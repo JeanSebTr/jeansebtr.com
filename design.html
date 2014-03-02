@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf8" />
+        <title>@JeanSebTr</title>
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            .site-header {
+                width: 100%;
+                height: 60px;
+                background-color: rgb(210, 210, 210);
+            }
+            .site-header > div {
+                width: 100%;
+                height: 100%;
+                max-width: 900px;
+                margin: auto;
+                position: relative;
+            }
+            .site-title {
+                display: inline-block;
+                position: relative;
+                left: 40px;
+                background-color: rgb(195, 195, 195);
+                padding: 14px 7px 16px;
+                height: 30px;
+                font-size: 30px;
+                line-height: 1em;
+                text-decoration: none;
+                font-family: "Helvetica neue";
+                z-index: 5;
+            }
+            .site-title:before, .site-title:after {
+                display: block;
+                position: absolute;
+                content: "";
+                width: 0;
+                height: 0;
+                top: 0;
+                border-style: solid;
+            }
+            .site-title:before {
+                left: -40px;
+                border-width: 0 0 60px 40px;
+                border-color: transparent transparent rgb(195, 195, 195) transparent;
+            }
+            .site-title:after {
+                right: -40px;
+                border-width: 60px 40px 0 0;
+                border-color: rgb(195, 195, 195) transparent transparent transparent;
+            }
+            .nav-social {
+                display: block;
+                position: absolute;
+                top: 5px;
+                left: 30px;
+                transition: left .6s ease-out;
+            }
+            .site-header > div:hover .nav-social {
+                left: 255px;
+            }
+            .nav-social ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                display: block;
+            }
+            .nav-social li {
+                margin: 10px;
+                padding: 0;
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                border-radius: 8px;
+                background-color: blue;
+                font-size: 0;
+            }
+            .site-content {
+                display: block;
+                background-color: rgb(230, 230, 230);
+                width: 100%;
+                margin: auto;
+                max-width: 900px;
+                height: 100%;
+            }
+        </style>
+        <script src="http://fb.me/react-0.9.0.js"></script>
+        <script src="http://fb.me/JSXTransformer-0.9.0.js"></script>
+        <script type="text/javascript" src="/assets/scripts/history.js"></script>
+        <script type="text/javascript" src="/assets/scripts/routes.js"></script>
+        <script type="text/javascript" src="/assets/scripts/app.js"></script>
+        <script type="text/jsx">
+          /**
+           * @jsx React.DOM
+           */
+          var Link = React.createClass({
+              navigate: function(ev) {
+                ev.preventDefault();
+                History.pushState(null, null, this.refs.link.getDOMNode().href);
+              },
+              render: function() {
+                return (
+                    <a href={this.props.href} ref="link" className={this.props.className} onClick={this.navigate}>{this.props.children}</a>
+                );
+              }
+          })
+          var Header = React.createClass({
+              render: function() {
+                return (
+                    <header className="site-header">
+                        <div>
+                            <Link className="site-title" href="/">@JeanSebTr</Link>
+                            <nav className="nav-social">
+                                <ul>
+                                    <li>Twitter</li>
+                                    <li>Facebook</li>
+                                    <li>Linked in</li>
+                                    <li>Github</li>
+                                </ul>
+                            </nav>
+                            <nav className="nav-pages">
+                            </nav>
+                        </div>
+                    </header>
+                );
+              }
+          });
+          var Layout = React.createClass({
+              render: function() {
+                return (
+                    <body>
+                        <Header />
+                        <section className="site-content"></section>
+                    </body>
+                );
+              }
+            });
+          React.renderComponent(<Layout />, document.body);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
